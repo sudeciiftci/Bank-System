@@ -33,19 +33,29 @@ public class BankAccount {
         this.balance = balance;
     }
 
-    public void withdraw(double amount){
+    public void withdraw(double amount)
+            throws InvalidAmountException, InsufficientBalanceException {
 
+        if (amount <= 0) {
+            throw new InvalidAmountException("Withdrawal amount must be greater than zero.");
+        }
+
+        if (amount > balance) {
+            throw new InsufficientBalanceException("Insufficient balance for this withdrawal.");
+        }
+
+        balance -= amount;
     }
 
-    public void deposit(double amount) throws InvalidAmountException{
-        if(amount <= 0){
-            throw new InvalidAmountException("Amount cannot be zero or negative.");
+    public void deposit(double amount) throws InvalidAmountException {
+        if (amount <= 0) {
+            throw new InvalidAmountException("Deposit amount must be greater than zero.");
         }
+
         balance += amount;
     }
 
-    public void transfer(double amount){
+    public void transfer(double amount) {
 
     }
-    
 }
