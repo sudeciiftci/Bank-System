@@ -55,7 +55,10 @@ public class BankAccount {
         balance += amount;
     }
 
-    public void transfer(double amount) {
+    public void transfer(BankAccount receiver, double amount)
+            throws InvalidAmountException, InsufficientBalanceException {
 
+        withdraw(amount);
+        receiver.deposit(amount);
     }
 }
